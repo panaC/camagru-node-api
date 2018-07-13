@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   config.js                                          :+:      :+:    :+:   */
+/*   root.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/13 16:11:05 by pleroux           #+#    #+#             */
-/*   Updated: 2018/07/13 16:29:50 by pleroux          ###   ########.fr       */
+/*   Created: 2018/07/13 16:45:11 by pleroux           #+#    #+#             */
+/*   Updated: 2018/07/13 16:50:05 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-module.exports = {
-  "name": "camagru",
-  "db": "mongodb://localhost:27017/camagru"
-}
+var express = require('express');
+var router = express.Router();
+
+router.get('/', (req, res) => {
+  res.send('Hello! The API is at : https://' + req.headers.host + '/api');
+});
+
+module.exports = router;

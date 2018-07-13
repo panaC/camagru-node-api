@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:55:45 by pleroux           #+#    #+#             */
-/*   Updated: 2018/07/13 16:51:46 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/07/13 17:15:16 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ const config      = require('./config'); // get our config file
 
 const port        = process.env.PORT || 8080;
 const indexRouter = require('./routes/root.js');
-const apiRouter   = require('./routes/api.js');
+const apiRouter   = require('./routes/api/api.js');
 
 mongoose.connect(config.db, { useNewUrlParser: true }); // connect to database
 

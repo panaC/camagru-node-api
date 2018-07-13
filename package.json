@@ -1,0 +1,22 @@
+{
+  "name": "camagru-node-api",
+  "version": "0.0.1",
+  "description": "API for camagru in JS Node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/panaC/camagru-node-api.git"
+  },
+  "author": "pleroux",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/panaC/camagru-node-api/issues"
+  },
+  "homepage": "https://github.com/panaC/camagru-node-api#readme",
+  "dependencies": {
+    "mongodb": "^3.1.1"
+  }
+}

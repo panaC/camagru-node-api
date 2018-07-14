@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 17:19:08 by pleroux           #+#    #+#             */
-/*   Updated: 2018/07/13 18:58:35 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/07/14 18:52:03 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,34 @@ router.post('/get', (req, res) => {
       if (err || !doc) res.json({success: false, message: err || "no match"});
       else res.json({success: true, message: "ok", data: doc});
     });
+  } else {
+    res.json({success: false, message: "err"});
+  }
+});
+
+router.post('/info', (req, res) => {
+  if (req.body.idUser) {
+    User.where({_id : req.body.idUser}).findOne((err, doc) => {
+      if (err || !doc) res.json({success: false, message: err || "no match"});
+      else res.json({success: true, message: "ok", name: {first: doc.firstname, last: doc.lastname}});
+    });
+  } else {
+    res.json({success: false, message: "err"});
+  }
+});
+
+router.post('/auth', (req, res) => {
+  if (req.body.mail && req.body.password) {
+    User.where({mail : req.body.mail}).findOne((err, doc) => {
+      if (err || !doc) res.json({success: false, message: err || "wrong mail"});
+      else if (req.body.password === doc.password) {
+        res.json({success: true, message: "ok"});
+      } else {
+        res.json({success: false, message: "wrong password"});
+      }
+    });
+  } else {
+    res.json({success: false, message: "err"});
   }
 });
 

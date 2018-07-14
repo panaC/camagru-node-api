@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/14 15:29:57 by pleroux           #+#    #+#             */
-/*   Updated: 2018/07/14 18:32:25 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/07/14 22:45:30 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ router.post('/count', (req, res) => {
   })
 });
 
-router.post('/:page', (req, res) => {
+router.post('/page/:page', (req, res) => {
   const nbImg = 6;
   const page = req.params.page;
 
@@ -69,13 +69,27 @@ router.post('/:page', (req, res) => {
           success: true,
           message: "ok",
           img: img,
-          count: nbImg,
+          count: img.length,
           currentPage: req.params.page,
           page: Math.ceil(count / nbImg)
         });
       }
     })
   });
+});
+
+router.post('/get/:hash', (req, res) => {
+  if (req.params.id) {
+    res.sendFile(req.params.hash, {root: "static/img/"}, (err) => {
+      if (err) {
+        res.sendFile("default.png", {root: "static/img/"} ,(err) => {
+          if (err) res.status(404).json({success: false, message: "no default"});
+        });
+      }
+    });
+  } else {
+    res.json({success: false, message: "no hash"});
+  }
 });
 
 module.exports = router;

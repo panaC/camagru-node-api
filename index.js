@@ -6,7 +6,7 @@
 /*   By: pleroux <pleroux@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/13 14:55:45 by pleroux           #+#    #+#             */
-/*   Updated: 2018/07/14 12:11:58 by pleroux          ###   ########.fr       */
+/*   Updated: 2018/07/14 21:47:36 by pleroux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ const indexRouter = require('./routes/root.js');
 const apiRouter   = require('./routes/api/api.js');
 
 mongoose.connect(config.db, { useNewUrlParser: true }); // connect to database
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 // use body parser so we can get info from POST and/or URL parameters
 app.use(bodyParser.urlencoded({ extended: false }));
